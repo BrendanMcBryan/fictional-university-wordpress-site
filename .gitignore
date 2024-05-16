@@ -1,3 +1,9 @@
-/.DS_Store
+.DS_Store
 themes/fictional-university-theme/node_modules
-plugins
+
+upgrade
+node_modules
+uploads
+/index.php
+/themes/index.php
+/plugins/index.php
