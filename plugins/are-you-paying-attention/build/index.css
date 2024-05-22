@@ -4,8 +4,25 @@
 .paying-attention-edit-block {
   padding: 20px;
   border-radius: 2px;
-  border: 1px solid lightcyan;
-  background-color: lightslategray;
+  border: 1px solid lightslategray;
+  background-color: rgb(248, 250, 249);
+}
+.paying-attention-edit-block .mark-as-correct {
+  color: darkorange;
+  position: relative;
+  top: -3px;
+  transition: transform 0.3s ease-out;
+}
+.paying-attention-edit-block .mark-as-correct:hover {
+  transform: scale(1.25) rotate(12deg);
+}
+.paying-attention-edit-block .attention-delete {
+  color: lightcoral;
+  position: relative;
+  top: -5px;
+}
+.paying-attention-edit-block .attention-delete:hover {
+  color: crimson;
 }
 
 /*# sourceMappingURL=index.css.map*/
