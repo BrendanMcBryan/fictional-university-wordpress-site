@@ -130,12 +130,8 @@ wp.blocks.registerBlockType('ourplugin/are-you-paying-attention', {
       onChange: updateGrassColor
     }));
   },
-  save: function (props) {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Today the Sky is", ' ', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "skyColor"
-    }, props.attributes.skyColor), " and the Grass is", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "grassColor"
-    }, props.attributes.grassColor));
+  save: function () {
+    return null;
   }
 });
 })();
