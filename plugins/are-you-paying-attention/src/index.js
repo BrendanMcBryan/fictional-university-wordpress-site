@@ -1,5 +1,4 @@
 import './index.scss';
-
 import {
   TextControl,
   Flex,
@@ -11,11 +10,12 @@ import {
   PanelRow,
   ColorPicker,
 } from '@wordpress/components';
-
-import { InspectorControls } from '@wordpress/block-editor';
-
+import {
+  InspectorControls,
+  BlockControls,
+  AlignmentToolbar,
+} from '@wordpress/block-editor';
 import { ChromePicker } from 'react-color';
-
 (function () {
   let locked = false;
 
@@ -50,7 +50,18 @@ wp.blocks.registerBlockType('ourplugin/are-you-paying-attention', {
     question: { type: 'string' },
     answers: { type: 'array', default: [''] },
     correctAnswer: { type: 'number', default: undefined },
-    bgColor: { type: 'string', default: '#ebebeb' },
+    bgColor: { type: 'string', default: '#EBEBEB' },
+    theAlignment: { type: 'string', default: 'left' },
+  },
+  description: 'Give your audience a chance to prove their comprehension.',
+  example: {
+    attributes: {
+      question: 'What is my name?',
+      correctAnswer: 3,
+      answers: ['Meowsalot', 'Barksalot', 'Purrsloud', 'Brad'],
+      theAlignment: 'center',
+      bgColor: '#CFE8F1',
+    },
   },
   edit: EditComponent,
   save: function (props) {
@@ -83,18 +94,23 @@ function EditComponent(props) {
       className="paying-attention-edit-block"
       style={{ backgroundColor: props.attributes.bgColor }}
     >
+      <BlockControls>
+        <AlignmentToolbar
+          value={props.attributes.theAlignment}
+          onChange={(x) => props.setAttributes({ theAlignment: x })}
+        />
+      </BlockControls>
       <InspectorControls>
-        <PanelBody title="BG Color" initialOpen>
+        <PanelBody title="Background Color" initialOpen={true}>
           <PanelRow>
             <ChromePicker
               color={props.attributes.bgColor}
               onChangeComplete={(x) => props.setAttributes({ bgColor: x.hex })}
-              disableAlpha
+              disableAlpha={true}
             />
           </PanelRow>
         </PanelBody>
       </InspectorControls>
-
       <TextControl
         label="Question:"
         value={props.attributes.question}
@@ -129,7 +145,7 @@ function EditComponent(props) {
             </FlexItem>
             <FlexItem>
               <Button
-                variant="link"
+                isLink
                 className="attention-delete"
                 onClick={() => deleteAnswer(index)}
               >
@@ -140,7 +156,7 @@ function EditComponent(props) {
         );
       })}
       <Button
-        variant="primary"
+        isPrimary
         onClick={() => {
           props.setAttributes({
             answers: props.attributes.answers.concat(['']),
