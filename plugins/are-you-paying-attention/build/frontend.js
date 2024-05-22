@@ -128,6 +128,19 @@ divsToUpdate.forEach(div => {
 });
 function Quiz(props) {
   const [isCorrect, setIsCorrect] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined);
+  const [isCorrectDelayed, setIsCorrectDelayed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (isCorrect === false) {
+      setTimeout(() => {
+        setIsCorrect(undefined);
+      }, 2600);
+    }
+    if (isCorrect == true) {
+      setTimeout(() => {
+        setIsCorrectDelayed(true);
+      }, 1000);
+    }
+  }, [isCorrect]);
   function handleAnswer(index) {
     if (index == props.correctAnswer) {
       setIsCorrect(true);
@@ -139,8 +152,29 @@ function Quiz(props) {
     className: "paying-attention-frontend"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, props.question), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answers.map((answer, index) => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-      onClick: () => handleAnswer(index)
-    }, answer);
+      className: (isCorrectDelayed == true && index == props.correctAnswer ? 'no-click' : '') + (isCorrectDelayed == true && index != props.correctAnswer ? 'fade-incorrect' : ''),
+      onClick: isCorrect == true ? undefined : () => handleAnswer(index)
+    }, isCorrectDelayed == true && index == props.correctAnswer && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "20",
+      height: "20",
+      className: "bi bi-check-circle",
+      viewBox: "0 0 16 16"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"
+    })), isCorrectDelayed == true && index != props.correctAnswer && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "20",
+      height: "20",
+      className: "bi bi-x-circle",
+      viewBox: "0 0 16 16"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+    })), answer);
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: 'correct-message' + (isCorrect == true ? ' correct-message--visible' : '')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
