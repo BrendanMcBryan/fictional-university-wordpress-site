@@ -7,6 +7,7 @@
   Author URI: https://www.designingintent.com/
 */
 
+
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 require_once plugin_dir_path(__FILE__) . 'inc/generateProfessorHTML.php';
@@ -21,20 +22,25 @@ class FeaturedProfessor
 
   function profHTML()
   {
-
     register_rest_route('featuredProfessor/v1', 'getHTML', array(
-      'methods' => WP_REST_Server::READABLE,
+      'methods' => WP_REST_SERVER::READABLE,
       'callback' => [$this, 'getProfHTML']
     ));
   }
+
   function getProfHTML($data)
   {
-
     return generateProfessorHTML($data['profId']);
   }
 
   function onInit()
   {
+    register_meta('post', 'featuredprofessor', array(
+      'show_in_rest' => true,
+      'type' => 'number',
+      'single' => false
+    ));
+
     wp_register_script('featuredProfessorScript', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-i18n', 'wp-editor'));
     wp_register_style('featuredProfessorStyle', plugin_dir_url(__FILE__) . 'build/index.css');
 
@@ -48,9 +54,8 @@ class FeaturedProfessor
   function renderCallback($attributes)
   {
     if ($attributes['profId']) {
-      # code...
       wp_enqueue_style('featuredProfessorStyle');
-      return  generateProfessorHTML($attributes['profId']);
+      return generateProfessorHTML($attributes['profId']);
     } else {
       return NULL;
     }

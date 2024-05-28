@@ -149,35 +149,54 @@ wp.blocks.registerBlockType('ourplugin/featured-professor', {
 function EditComponent(props) {
   const [thePreview, setThePreview] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    async function go() {
-      const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-        path: `/featuredProfessor/v1/getHTML?profId=${props.attributes.profId}`,
-        method: 'GET'
-      });
-      setThePreview(response);
+    if (props.attributes.profId) {
+      updateTheMeta();
+      async function go() {
+        const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
+          path: `/featuredProfessor/v1/getHTML?profId=${props.attributes.profId}`,
+          method: 'GET'
+        });
+        setThePreview(response);
+      }
+      go();
     }
-    go();
   }, [props.attributes.profId]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    return () => {
+      updateTheMeta();
+    };
+  }, []);
+  function updateTheMeta() {
+    const profsForMeta = wp.data.select('core/block-editor').getBlocks().filter(x => x.name == 'ourplugin/featured-professor').map(x => x.attributes.profId).filter((x, index, arr) => {
+      return arr.indexOf(x) == index;
+    });
+    console.log(profsForMeta);
+    wp.data.dispatch('core/editor').editPost({
+      meta: {
+        featuredprofessor: profsForMeta
+      }
+    });
+  }
   const allProfs = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     return select('core').getEntityRecords('postType', 'professor', {
       per_page: -1
     });
   });
-  console.log(allProfs);
-  if (allProfs == undefined) return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Loading\u2026");
+
+  // console.log(allProfs);
+
+  if (allProfs == undefined) return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Loading...");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "featured-professor-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "professor-select-container"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-    name: "",
-    id: "",
     onChange: e => props.setAttributes({
       profId: e.target.value
     })
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: ""
-  }, "Select a Professor"), allProfs.map(prof => {
+  }, "Select a professor"), allProfs.map(prof => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
       value: prof.id,
       selected: props.attributes.profId == prof.id
