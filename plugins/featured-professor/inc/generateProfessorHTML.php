@@ -24,7 +24,7 @@ function generateProfessorHTML($id)
         $relatedPrograms = get_field('related_programs');
         if ($relatedPrograms) { ?>
 
-          <p>Name Teaches:
+          <p><?php the_title() ?> Teaches:
 
             <?php
             foreach ($relatedPrograms as $key => $program) {
