@@ -194,8 +194,6 @@ class PlaceholderBlock
   function __construct($name)
   {
     $this->name = $name;
-
-
     add_action('init', [$this, 'onInit']);
   }
 
@@ -217,7 +215,9 @@ class PlaceholderBlock
   }
 }
 
-new PlaceholderBlock('eventsandblogs');
+new PlaceholderBlock("eventsandblogs");
+new PlaceholderBlock("header");
+new PlaceholderBlock("footer");
 
 class JSXBlock
 {
@@ -255,8 +255,6 @@ class JSXBlock
     register_block_type("ourblocktheme/{$this->name}", $ourArgs);
   }
 }
-
-
 
 new JSXBlock('banner', true, ['fallbackimage' => get_theme_file_uri('/images/library-hero.jpg')]);
 new JSXBlock('genericheading');
