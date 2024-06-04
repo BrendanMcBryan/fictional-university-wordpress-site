@@ -155,22 +155,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.registerBlockType)('ourblocktheme/banner', {
-  title: 'Banner',
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.registerBlockType)("ourblocktheme/banner", {
+  title: "Banner",
   supports: {
-    align: ['full']
+    align: ["full"]
   },
   attributes: {
     align: {
-      type: 'string',
-      default: 'full'
+      type: "string",
+      default: "full"
     },
     imgID: {
-      type: 'number'
+      type: "number"
     },
     imgURL: {
-      type: 'string',
-      default: window.banner.fallbackimage
+      type: "string",
+      default: banner.fallbackimage
     }
   },
   edit: EditComponent,
@@ -182,7 +182,7 @@ function EditComponent(props) {
       async function go() {
         const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
           path: `/wp/v2/media/${props.attributes.imgID}`,
-          method: 'GET'
+          method: "GET"
         });
         props.setAttributes({
           imgURL: response.media_details.sizes.pageBanner.source_url
@@ -219,7 +219,7 @@ function EditComponent(props) {
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "page-banner__content container t-center c-white"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, {
-    allowedBlocks: ['ourblocktheme/genericheading', 'ourblocktheme/genericbutton']
+    allowedBlocks: ["ourblocktheme/genericheading", "ourblocktheme/genericbutton"]
   }))));
 }
 function SaveComponent() {

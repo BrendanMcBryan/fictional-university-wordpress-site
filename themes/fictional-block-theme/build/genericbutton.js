@@ -210,25 +210,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.registerBlockType)('ourblocktheme/genericbutton', {
-  title: 'Generic Button',
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.registerBlockType)("ourblocktheme/genericbutton", {
+  title: "Generic Button",
   attributes: {
     text: {
-      type: 'string'
+      type: "string"
     },
     size: {
-      type: 'string',
-      default: 'large'
+      type: "string",
+      default: "large"
     },
     linkObject: {
-      type: 'object',
+      type: "object",
       default: {
-        url: ''
+        url: ""
       }
     },
     colorName: {
-      type: 'string',
-      default: 'blue'
+      type: "string",
+      default: "blue"
     }
   },
   edit: EditComponent,
@@ -265,19 +265,19 @@ function EditComponent(props) {
     onClick: buttonHandler,
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"]
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
-    isPressed: props.attributes.size === 'large',
+    isPressed: props.attributes.size === "large",
     onClick: () => props.setAttributes({
-      size: 'large'
+      size: "large"
     })
   }, "Large"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
-    isPressed: props.attributes.size === 'medium',
+    isPressed: props.attributes.size === "medium",
     onClick: () => props.setAttributes({
-      size: 'medium'
+      size: "medium"
     })
   }, "Medium"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
-    isPressed: props.attributes.size === 'small',
+    isPressed: props.attributes.size === "small",
     onClick: () => props.setAttributes({
-      size: 'small'
+      size: "small"
     })
   }, "Small"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: "Color",
@@ -295,8 +295,7 @@ function EditComponent(props) {
     value: props.attributes.text,
     onChange: handleTextChange
   }), isLinkPickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Popover, {
-    position: "middle center",
-    onFocusOutside: () => setIsLinkPickerVisible(false)
+    position: "middle center"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.__experimentalLinkControl, {
     settings: [],
     value: props.attributes.linkObject,
@@ -305,8 +304,8 @@ function EditComponent(props) {
     variant: "primary",
     onClick: () => setIsLinkPickerVisible(false),
     style: {
-      display: 'block',
-      width: '100%'
+      display: "block",
+      width: "100%"
     }
   }, "Confirm Link")));
 }

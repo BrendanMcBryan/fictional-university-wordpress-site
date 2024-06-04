@@ -129,15 +129,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('ourblocktheme/genericheading', {
-  title: 'Generic Heading',
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)("ourblocktheme/genericheading", {
+  title: "Generic Heading",
   attributes: {
     text: {
-      type: 'string'
+      type: "string"
     },
     size: {
-      type: 'string',
-      default: 'large'
+      type: "string",
+      default: "large"
     }
   },
   edit: EditComponent,
@@ -150,22 +150,22 @@ function EditComponent(props) {
     });
   }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
-    isPressed: props.attributes.size == 'large',
+    isPressed: props.attributes.size === "large",
     onClick: () => props.setAttributes({
-      size: 'large'
+      size: "large"
     })
   }, "Large"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
-    isPressed: props.attributes.size == 'medium',
+    isPressed: props.attributes.size === "medium",
     onClick: () => props.setAttributes({
-      size: 'medium'
+      size: "medium"
     })
   }, "Medium"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
-    isPressed: props.attributes.size == 'small',
+    isPressed: props.attributes.size === "small",
     onClick: () => props.setAttributes({
-      size: 'small'
+      size: "small"
     })
   }, "Small"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    allowedFormats: ['core/bold', 'core/italic'],
+    allowedFormats: ["core/bold", "core/italic"],
     tagName: "h1",
     className: `headline headline--${props.attributes.size}`,
     value: props.attributes.text,
@@ -175,12 +175,12 @@ function EditComponent(props) {
 function SaveComponent(props) {
   function createTagName() {
     switch (props.attributes.size) {
-      case 'large':
-        return 'h1';
-      case 'medium':
-        return 'h2';
-      case 'small':
-        return 'h3';
+      case "large":
+        return "h1";
+      case "medium":
+        return "h2";
+      case "small":
+        return "h3";
     }
   }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {

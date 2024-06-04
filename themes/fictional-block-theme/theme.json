@@ -5,7 +5,7 @@
       "core/button": {
         "color": {
           "text": "#FFFFFF",
-          "background": "var(--wp--preset--color--primary)"
+          "background": "var(--wp--preset--color--pizza)"
         }
       }
     }
@@ -27,7 +27,7 @@
     "color": {
       "palette": [
         {
-          "slug": "primary",
+          "slug": "pizza",
           "color": "#0d3b66",
           "name": "Primary"
         },
